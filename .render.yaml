@@ -3,5 +3,5 @@ services:
     name: traccar
     env: docker
     plan: free
-    dockerfilePath: docker/Dockerfile
+    dockerfilePath: docker/Dockerfile.debian
     autoDeploy: true
