@@ -2,8 +2,9 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /opt/traccar
 
-COPY lib ./lib
+# tracker-server.jar と lib/ をコピー
 COPY tracker-server.jar .
+COPY lib ./lib
 
 EXPOSE 8082
 
