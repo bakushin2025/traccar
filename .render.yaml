@@ -5,14 +5,4 @@ services:
     plan: free
     dockerfilePath: docker/Dockerfile.debian
     autoDeploy: true
-    envVars:
-      - key: CONFIG_DATABASE_DRIVER
-        value: org.mariadb.jdbc.Driver
-      - key: CONFIG_DATABASE_URL
-        value: jdbc:mariadb://your-db-host:3306/traccar
-      - key: CONFIG_DATABASE_USER
-        value: your-db-username
-      - key: CONFIG_DATABASE_PASSWORD
-        value: your-db-password
-      - key: CONFIG_WEB_PORT
-        value: 8082
+    buildCommand: git submodule update --init --recursive
