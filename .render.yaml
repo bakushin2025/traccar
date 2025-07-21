@@ -4,5 +4,5 @@ services:
     env: docker
     plan: free
     dockerfilePath: docker/Dockerfile.debian
-    autoDeploy: true
     buildCommand: git submodule update --init --recursive
+    autoDeploy: true
