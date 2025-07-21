@@ -1,11 +1,13 @@
-FROM openjdk:17-jdk-slim
+FROM openjdk:17-jdk-slim             # ① ベースイメージ
 
-WORKDIR /opt/traccar
+WORKDIR /opt/traccar                 # ② 作業ディレクトリ
 
-# tracker-server.jar と lib/ をコピー
+# ③ JAR とライブラリ・設定をコピー
 COPY tracker-server.jar .
-COPY lib ./lib
+COPY lib   ./lib
+COPY conf  ./conf                    # ← 追加行
 
-EXPOSE 8082
+EXPOSE 8082                          # ④ Web UI 用ポート
 
-CMD ["java", "-cp", "tracker-server.jar:lib/*", "org.traccar.Main"]
+# ⑤ クラスパスに lib/* を含めて設定ファイルを渡す
+CMD ["java", "-cp", "tracker-server.jar:lib/*", "org.traccar.Main", "conf/traccar.xml"]
