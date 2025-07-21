@@ -1,13 +1,14 @@
 FROM openjdk:17-jdk-slim
 
-# 作業ディレクトリの作成
+# 作業ディレクトリ
 WORKDIR /opt/traccar
 
-# すべてのファイルをコピー（tracker-server.jar, conf/, web/, etc.）
-COPY . .
+# すべてのファイルをコピー（libをinstallersからコピー）
+COPY installers/lib ./lib
+COPY tracker-server.jar .
 
-# ポート8082を開放（Web UI用）
+# ポート開放（Web UI）
 EXPOSE 8082
 
-# 起動コマンド（tracker-server.jar を実行）
-CMD ["java", "-jar", "tracker-server.jar"]
+# 実行（lib内のjarをクラスパスに含める）
+CMD ["java", "-cp", "tracker-server.jar:lib/*", "org.traccar.Main"]
